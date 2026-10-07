@@ -577,7 +577,7 @@ in
           );
       };
 
-      "opencode/tui.json" = mkIf (cfg.tui != { }) (
+      "opencode/cli.json" = mkIf (cfg.tui != { }) (
         let
           orderedJsonFormat = lib.hm.generators.mkDAGOrderedJsonFormat {
             inherit pkgs jsonFormat;
@@ -585,9 +585,9 @@ in
           };
         in
         {
-          source = orderedJsonFormat.generate "tui.json" (
+          source = orderedJsonFormat.generate "cli.json" (
             {
-              "$schema" = "https://opencode.ai/tui.json";
+              "$schema" = "https://opencode.ai/v2/cli.json";
             }
             // cfg.tui
           );
