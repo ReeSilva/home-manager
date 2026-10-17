@@ -17,7 +17,7 @@ let
   webCfg = cfg.web;
   hasSettings = cfg.settings != { } || transformedMcpServers != { };
   settingsPath = "opencode/${if cfg.mutableSettings then "home-manager.json" else "opencode.json"}";
-  tuiPath = "opencode/${if cfg.mutableSettings then "home-manager-tui.json" else "tui.json"}";
+  tuiPath = "opencode/${if cfg.mutableSettings then "home-manager-cli.json" else "cli.json"}";
   effectiveFile = path: config.home.file."${config.xdg.configHome}/${path}";
   absoluteTarget =
     path:
@@ -646,9 +646,9 @@ in
           };
         in
         {
-          source = orderedJsonFormat.generate "tui.json" (
+          source = orderedJsonFormat.generate "cli.json" (
             {
-              "$schema" = "https://opencode.ai/tui.json";
+              "$schema" = "https://opencode.ai/v2/cli.json";
             }
             // cfg.tui
           );
